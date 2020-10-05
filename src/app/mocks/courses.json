@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "title": "Angular full course for beginners",
+    "creationDate": "24/09/2020",
+    "durationMin": 45,
+    "description": "This course is just the right one in case you want to familiarize yourself with the angular basics and start using it for real life application"
+  },
+  {
+    "id": "2",
+    "title": "Angular intermediate course - diving deeper into details",
+    "creationDate": "24/10/2020",
+    "durationMin": 56,
+    "description": "This course is just the right one in case you want to familiarize yourself with the angular basics and start using it for real life application"
+  },
+  {
+    "id": "3",
+    "title": "Building PWA with Angular8",
+    "creationDate": "24/11/2020",
+    "durationMin": 48,
+    "description": "This course is just the right one in case you want to familiarize yourself with the angular basics and start using it for real life application"
+  }
+]
