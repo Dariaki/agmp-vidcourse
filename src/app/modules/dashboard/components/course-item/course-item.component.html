@@ -1,1 +1,28 @@
-<p>course-item works!</p>
+<li class="course-item">
+  <div class="course-item__content">
+    <div class="course-item__info">
+      <h3 class="course-item__title">{{course.title}}</h3>
+      <div class="course-item__details">
+        <div class="agmp-menu-container with-icon course-item__duration-menu">
+          <mat-icon class="agmp-menu-icon">access_time</mat-icon>
+          <span class="agmp-menu-text course-item__details-text">{{course.durationMin}}</span>
+        </div>
+        <div class="agmp-menu-container with-icon course-item__creation-menu">
+          <mat-icon class="agmp-menu-icon">date_range</mat-icon>
+          <span class="agmp-menu-text course-item__details-text">{{course.creationDate}}</span>
+        </div>
+      </div>
+    </div>
+    <p>{{course.description}}</p>
+  </div>
+  <div class="course-item__action">
+    <button class="btn btn-secondary btn-course">
+      <mat-icon class="btn-icon">create</mat-icon>
+      <span class="btn-text with-icon">Edit</span>
+    </button>
+    <button class="btn btn-secondary btn-course">
+      <mat-icon class="btn-icon">delete</mat-icon>
+      <span class="btn-text with-icon">Delete</span>
+    </button>
+  </div>
+</li>

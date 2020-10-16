@@ -1,1 +1,25 @@
-<p>search works!</p>
+<div class="search">
+  <form class="search__wrapper">
+    <div class="search__input-wrapper">
+      <label class="search__icon generic-input-label with-icon">
+        <mat-icon class="generic-input-icon">search</mat-icon>
+        <input
+          [(ngModel)]="searchValue"
+          name="searchValue"
+          class="search__input generic-input with-icon"
+          placeholder="Text to search"/>
+      </label>
+    </div>
+    <div>
+      <button
+        (click)="search()"
+        class="btn btn-primary search__btn"
+        type="submit"
+      >Search</button>
+    </div>
+  </form>
+</div>
+
+
+
+

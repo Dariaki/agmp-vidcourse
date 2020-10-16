@@ -18,6 +18,9 @@ import { SearchComponent } from './components/search/search.component';
     CourseItemComponent,
     SearchComponent
   ],
+  exports: [
+    DashboardComponent
+  ],
   imports: [
     SharedModule
   ]

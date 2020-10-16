@@ -7,6 +7,7 @@ import { LogoComponent } from './components/logo/logo.component';
 import { GenericInputComponent } from './components/generic-input/generic-input.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,11 +20,13 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   exports: [
     CommonModule,
     MaterialModule,
+    FormsModule,
     FilterPipe,
     ModalComponent,
     LogoComponent,

@@ -1,1 +1,20 @@
-<p>dashboard works!</p>
+<div class="dashboard">
+  <agmp-dashboard-header></agmp-dashboard-header>
+  <div class="dashboard__breadcrumbs-container">
+    <div class="view-container">
+      <agmp-breadcrumbs></agmp-breadcrumbs>
+    </div>
+  </div>
+  <div class="view-container dashboard__content-container">
+    <div class="dashboard__search-container">
+      <agmp-search></agmp-search>
+    </div>
+    <div class="dashboard__addcourse-container">
+      <button class="btn btn-secondary btn-add">
+        <mat-icon class="btn-icon">add</mat-icon>
+        <span class="btn-text with-icon">Add course</span>
+      </button>
+    </div>
+    <agmp-course-list></agmp-course-list>
+  </div>
+</div>

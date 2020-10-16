@@ -1,0 +1,43 @@
+@import "variables";
+
+.course-item {
+  background-color: #ffffff;
+  box-shadow: 2px 2px 8px #999999;
+  margin-bottom: 24px;
+  border-radius: 4px;
+  padding: 1.4rem 2rem;
+  display: flex;
+
+  &__title {
+    font-size: 24px;
+    color: $text-primary;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__details {
+    display: flex;
+    font-size: 14px;
+    color: $text-secondary;
+  }
+
+  &__details-text {
+    vertical-align: middle!important;
+  }
+
+  &__duration-menu,
+  &__creation-menu {
+    margin: 0 8px;
+  }
+
+}
+
+.btn-course {
+  width: 120px;
+  padding: 6px;
+  margin: 6px;
+}
