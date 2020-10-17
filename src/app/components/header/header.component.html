@@ -1,1 +1,22 @@
-<p>header works!</p>
+<header class="header">
+  <div class="view-container header__container">
+    <div class="header__logo">
+      <a class="logo" href="#">
+        <img class="logo-image" src="assets/images/svg/logo.svg" alt="Website Logo"/>
+        <span class="logo-text">Video Course</span>
+      </a>
+    </div>
+    <div class="header__login" *ngIf="authenticated">
+      <div class="header__login">
+        <div class="agmp-menu-container with-icon header__login-menu">
+          <mat-icon class="agmp-menu-icon">person</mat-icon>
+          <span class="agmp-menu-text">User login</span>
+        </div>
+        <div class="agmp-menu-container with-icon header__login-menu">
+          <mat-icon class="agmp-menu-icon">login</mat-icon>
+          <span class="agmp-menu-text">User logoff</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

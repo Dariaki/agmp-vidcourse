@@ -1,6 +1,6 @@
-<li class="course-item">
-  <div class="course-item__content">
-    <div class="course-item__info">
+<li class="course-item generic-container">
+
+    <div class="course-item__general-info">
       <h3 class="course-item__title">{{course.title}}</h3>
       <div class="course-item__details">
         <div class="agmp-menu-container with-icon course-item__duration-menu">
@@ -13,16 +13,18 @@
         </div>
       </div>
     </div>
-    <p>{{course.description}}</p>
-  </div>
-  <div class="course-item__action">
-    <button class="btn btn-secondary btn-course">
-      <mat-icon class="btn-icon">create</mat-icon>
-      <span class="btn-text with-icon">Edit</span>
-    </button>
-    <button class="btn btn-secondary btn-course">
-      <mat-icon class="btn-icon">delete</mat-icon>
-      <span class="btn-text with-icon">Delete</span>
-    </button>
-  </div>
+
+    <div class="course-item__extended-info">
+      <p class="course-item__description">{{course.description}}</p>
+      <div class="course-item__actions">
+        <button class="btn btn-secondary btn-course" (click)="editCourse(course.id)">
+          <mat-icon class="btn-icon">create</mat-icon>
+          <span class="btn-text with-icon">Edit</span>
+        </button>
+        <button class="btn btn-secondary btn-course" (click)="deleteCourse(course.id)">
+          <mat-icon class="btn-icon">delete</mat-icon>
+          <span class="btn-text with-icon">Delete</span>
+        </button>
+      </div>
+    </div>
 </li>

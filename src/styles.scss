@@ -11,17 +11,30 @@ body {
   background-color: $bs-light;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, p {
   margin: 0;
 }
 
 a {
   text-decoration: none;
+  color: $text-primary;
 }
 
 ul {
   list-style-type: none;
   padding: 0;
+}
+
+.view-container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.generic-container {
+  background-color: #ffffff;
+  box-shadow: 2px 2px 8px #999999;
+  border-radius: 4px;
+  padding: 1.4rem 2rem;
 }
 
 .logo {
@@ -120,9 +133,4 @@ ul {
 .agmp-menu-container.with-icon .agmp-menu-text {
   display: inline-block;
   vertical-align: bottom;
-}
-
-.view-container {
-  width: 80%;
-  margin: 0 auto;
 }

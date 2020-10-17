@@ -1,22 +1,24 @@
 @import "variables";
 
 .course-item {
-  background-color: #ffffff;
-  box-shadow: 2px 2px 8px #999999;
   margin-bottom: 24px;
-  border-radius: 4px;
-  padding: 1.4rem 2rem;
-  display: flex;
 
-  &__title {
-    font-size: 24px;
-    color: $text-primary;
-  }
-
-  &__info {
+  &__general-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  &__extended-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-top: 16px;
+  }
+
+&__title {
+    font-size: 24px;
+    color: $text-primary;
   }
 
   &__details {
@@ -32,6 +34,18 @@
   &__duration-menu,
   &__creation-menu {
     margin: 0 8px;
+  }
+
+  &__description {
+    font-size: 14px;
+    margin-right: 24px;
+    line-height: 24px;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
   }
 
 }

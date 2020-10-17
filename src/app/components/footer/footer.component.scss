@@ -1,0 +1,22 @@
+@import "variables";
+
+.footer {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $bs-dark;
+  padding: 1.5rem 0;
+
+  &__content-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &__copy {
+    color: $text-secondary;
+  }
+
+}
+

@@ -17,4 +17,11 @@ export class CourseListComponent implements OnInit {
     this.courses = (courseList as any).default
   }
 
+  deleteCourse(id: string) {
+    console.log('Delete event emitted with id: ', id);
+  }
+
+  editCourse(id: string) {
+    console.log('Edit event emitted with id: ', id);
+  }
 }
