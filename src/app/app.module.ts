@@ -9,7 +9,7 @@ import { HeaderComponent } from './components/header/header.component';
 
 import { LoginModule } from './modules/login/login.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
-import {SharedModule} from './modules/shared/shared.module';
+import { SharedModule } from './modules/shared/shared.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
