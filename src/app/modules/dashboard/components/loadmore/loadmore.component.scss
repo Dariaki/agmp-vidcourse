@@ -1,4 +1,4 @@
-@import "variables";
+@import 'variables';
 
 .loadmore {
   margin-bottom: 24px;
@@ -9,15 +9,16 @@
   &-text {
     display: inline-block;
     padding: 1.4rem 2rem;
+    background-color: #ffffff;
+    color: $text-primary;
+    border: none;
+    outline: none;
     width: 100%;
 
     &:hover {
       color: #ffffff;
+      background-color: $accent-secondary;
+      box-shadow: 2px 2px 8px #457379;
     }
-  }
-
-  &:hover {
-    background-color: $accent-secondary;
-    box-shadow: 2px 2px 8px #457379;
   }
 }
