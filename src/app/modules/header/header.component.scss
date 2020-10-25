@@ -1,0 +1,31 @@
+@import 'variables';
+
+.header {
+  background-color: $bs-dark;
+  padding: 1.5rem 0;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__login {
+    display: flex;
+    color: #ffffff;
+  }
+
+  &__login .agmp-menu-container:hover {
+    color: $accent-secondary;
+  }
+
+  &__login-menu {
+    margin: 0 8px;
+    cursor: pointer;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+}

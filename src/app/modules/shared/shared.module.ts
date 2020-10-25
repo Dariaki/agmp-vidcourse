@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './modules/material/material.module';
+import { FormsModule } from '@angular/forms';
+
 import { FilterPipe } from './pipes/filter.pipe';
 import { ModalComponent } from './components/modal/modal.component';
 import { LogoComponent } from './components/logo/logo.component';
@@ -19,11 +21,13 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   exports: [
     CommonModule,
     MaterialModule,
+    FormsModule,
     FilterPipe,
     ModalComponent,
     LogoComponent,

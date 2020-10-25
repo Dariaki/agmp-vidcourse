@@ -1,1 +1,19 @@
-<p>course-list works!</p>
+<div class="courselist">
+  <div class="courselist__addcourse-container">
+    <button class="btn btn-secondary btn-add">
+      <mat-icon class="btn-icon">add</mat-icon>
+      <span class="btn-text with-icon">Add course</span>
+    </button>
+  </div>
+  <ul>
+    <agmp-course-item
+      *ngFor="let course of courses"
+      [course]="course"
+      (deleteCourseEvent)="deleteCourse($event)"
+      (editCourseEvent)="editCourse($event)"
+    ></agmp-course-item>
+  </ul>
+  <agmp-loadmore></agmp-loadmore>
+</div>
+
+
