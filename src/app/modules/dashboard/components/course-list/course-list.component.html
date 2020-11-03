@@ -5,15 +5,24 @@
       <span class="btn-text with-icon">Add course</span>
     </button>
   </div>
-  <ul>
-    <agmp-course-item
-      *ngFor="let course of courses"
-      [course]="course"
-      (deleteCourseEvent)="deleteCourse($event)"
-      (editCourseEvent)="editCourse($event)"
-    ></agmp-course-item>
-  </ul>
-  <agmp-loadmore></agmp-loadmore>
+  <div
+    class="courselist__course-container"
+    *ngIf="courses.length > 0; else noCourses">
+    <ul>
+      <agmp-course-item
+        *ngFor="let course of courses | orderBy:'creationDate'"
+        [course]="course"
+        (deleteCourseEvent)="deleteCourse($event)"
+        (editCourseEvent)="editCourse($event)"
+      ></agmp-course-item>
+    </ul>
+    <agmp-loadmore></agmp-loadmore>
+  </div>
+  <ng-template #noCourses>
+    <div class="generic-container courselist__course-container no-courses">
+      <span>No Data! Feel free to add new courses.</span>
+    </div>
+  </ng-template>
 </div>
 
 
