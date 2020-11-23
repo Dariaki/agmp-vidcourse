@@ -10,9 +10,11 @@
       <div class="header__login">
         <div class="agmp-menu-container with-icon header__login-menu">
           <mat-icon class="agmp-menu-icon">person</mat-icon>
-          <span class="agmp-menu-text">User login</span>
+          <span class="agmp-menu-text">Welcome, {{userName}}!</span>
         </div>
-        <div class="agmp-menu-container with-icon header__login-menu">
+        <div
+          (click)="logOff()"
+          class="agmp-menu-container with-icon header__login-menu">
           <mat-icon class="agmp-menu-icon">login</mat-icon>
           <span class="agmp-menu-text">User logoff</span>
         </div>

@@ -1,5 +1,5 @@
 <div class="dashboard">
-  <div class="dashboard__breadcrumbs-container">
+  <div *ngIf="authenticated" class="dashboard__breadcrumbs-container">
     <div class="view-container">
       <agmp-breadcrumbs></agmp-breadcrumbs>
     </div>

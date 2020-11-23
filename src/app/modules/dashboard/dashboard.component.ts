@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+// import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'agmp-dashboard',
@@ -7,8 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  searchValue: string;
-  constructor() { }
+  public searchValue: string;
+  public authenticated = true;
+
+  constructor(
+    // private authenticationService: AuthenticationService
+  ) {
+    // this.authenticationService.authenticated$.subscribe(isAuthenticated => {
+    //   console.log('isAuthenticated:', isAuthenticated);
+    //   this.authenticated = isAuthenticated;
+    // })
+  }
 
   ngOnInit(): void {
   }
