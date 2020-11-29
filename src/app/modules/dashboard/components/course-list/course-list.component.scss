@@ -6,8 +6,16 @@
     align-items: center;
   }
 
+  &__course-container {
+    margin: 16px 0;
+  }
+
 }
 
 .btn-add {
   padding: 8px 16px;
+}
+
+.no-courses {
+  text-align: center;
 }

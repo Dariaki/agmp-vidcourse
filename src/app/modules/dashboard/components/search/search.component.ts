@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'agmp-search',
@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  searchValue: string
+  searchValue: string;
+  @Output() onSearch: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 
@@ -16,6 +17,7 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
-    console.log('Search Value: ', this.searchValue);
+    this.onSearch.emit(this.searchValue)
+    // console.log('Search Value: ', this.searchValue);
   }
 }
