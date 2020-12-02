@@ -12,6 +12,10 @@ import { GenericInputComponent } from './components/generic-input/generic-input.
 import { NotificationComponent } from './components/notification/notification.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { CourseStatusDirective } from './directives/course-status.directive';
+import { GenericTextareaComponent } from './components/generic-textarea/generic-textarea.component';
+import { DatePickerComponent } from './components/date-picker/date-picker.component';
+import { TimePickerComponent } from './components/time-picker/time-picker.component';
+import { TagInputComponent } from './components/tag-input/tag-input.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,11 @@ import { CourseStatusDirective } from './directives/course-status.directive';
     GenericInputComponent,
     NotificationComponent,
     BreadcrumbsComponent,
-    CourseStatusDirective
+    CourseStatusDirective,
+    GenericTextareaComponent,
+    DatePickerComponent,
+    TimePickerComponent,
+    TagInputComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +51,10 @@ import { CourseStatusDirective } from './directives/course-status.directive';
     GenericInputComponent,
     NotificationComponent,
     BreadcrumbsComponent,
-    CourseStatusDirective
+    CourseStatusDirective,
+    TagInputComponent,
+    TimePickerComponent,
+    DatePickerComponent
   ],
 })
 export class SharedModule { }

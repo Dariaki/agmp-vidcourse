@@ -1,0 +1,18 @@
+<div class="date-picker">
+  <div class="generic-form__label">
+    <label
+      for="date"
+      class="generic-form__label-text generic-form__input-label">Date:</label>
+  </div>
+  <div class="generic-form__input-label with-icon">
+    <mat-icon class="generic-form__input-icon--static generic-form__input-icon--right">date_range</mat-icon>
+  <input
+    name="date"
+    id="date"
+    [(ngModel)]="inputModel"
+    (ngModelChange)="inputModelChange.emit(inputModel)"
+    class="generic-input generic-form__input with-icon--right"
+    placeholder="MM/DD/YYYY"/>
+  </div>
+
+</div>

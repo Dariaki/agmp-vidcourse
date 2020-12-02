@@ -1,56 +1,56 @@
 <div class="generic-container login-form">
   <form>
 
-    <div class="login-form__header">
-      <h3 class="login-form__header-text">Login</h3>
+    <div class="generic-form__header">
+      <h3 class="generic-form__header-text">Login</h3>
     </div>
 
-    <div class="login-form__body">
-      <div class="login-form__control">
-        <div class="login-form__label">
+    <div class="generic-form__body">
+      <div class="generic-form__control">
+        <div class="generic-form__label">
           <label for="name"
-            class="login-form__label-text">Name:</label>
+            class="generic-form__label-text">Name:</label>
         </div>
         <input
           [(ngModel)]="userData.name"
           id="name"
           name="name"
-          class="generic-input login-form__input"
+          class="generic-input generic-form__input"
           placeholder="Enter name"/>
       </div>
-      <div class="login-form__control">
-        <div class="login-form__label">
+      <div class="generic-form__control">
+        <div class="generic-form__label">
           <label
             for="email"
-            class="login-form__label-text">Email:</label>
+            class="generic-form__label-text">Email:</label>
         </div>
         <input
           [(ngModel)]="userData.email"
           id="email"
           name="email"
-          class="generic-input login-form__input"
+          class="generic-input generic-form__input"
           placeholder="Enter e-mail"
           type="email"/>
       </div>
-      <div class="login-form__control">
-        <div class="login-form__label">
+      <div class="generic-form__control">
+        <div class="generic-form__label">
           <label
             for="password"
-            class="login-form__label-text">Password:</label>
+            class="generic-form__label-text">Password:</label>
         </div>
         <input
           [(ngModel)]="userData.password"
           id="password"
           name="password"
-          class="generic-input login-form__input"
+          class="generic-input generic-form__input"
           placeholder="Enter password"
           type="password"/>
       </div>
     </div>
 
-    <div class="login-form__footer">
-      <div class="login-form__forgot-password">
-        <a class="login-form__forgot-password-link mock-link">Forgot password?</a>
+    <div class="generic-form__footer">
+      <div class="generic-form__forgot-password">
+        <a class="generic-form__forgot-password-link mock-link">Forgot password?</a>
       </div>
       <div>
         <button

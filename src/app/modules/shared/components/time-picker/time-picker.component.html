@@ -1,0 +1,16 @@
+<div class="time-picker">
+  <div class="generic-form__label">
+    <label
+      for="time"
+      class="generic-form__label-text">Duration:</label>
+  </div>
+  <input
+    [(ngModel)]="inputModel"
+    (ngModelChange)="inputModelChange.emit(inputModel)"
+    name="time"
+    id="time"
+    type="number"
+    class="generic-form__input time-picker__input"
+    placeholder="minutes"/>
+    <span class="time-picker__time-output">{{inputModel | timeNormalizer}}</span>
+</div>
