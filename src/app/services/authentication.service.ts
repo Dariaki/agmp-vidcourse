@@ -11,6 +11,10 @@ export class AuthenticationService {
 
   constructor() { }
 
+  public getAuthenticated() {
+    return this.authenticated$.asObservable()
+  }
+
   public loginUser(user: IUser) {
     localStorage.setItem('user', JSON.stringify(user));
     this.authenticated$.next(this.isAuthenticated());

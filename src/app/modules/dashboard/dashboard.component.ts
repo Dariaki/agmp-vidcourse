@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     // private authenticationService: AuthenticationService
   ) {
-    // this.authenticationService.authenticated$.subscribe(isAuthenticated => {
+    // this.authenticationService.getAuthenticated().subscribe(isAuthenticated => {
     //   console.log('isAuthenticated:', isAuthenticated);
     //   this.authenticated = isAuthenticated;
     // })
