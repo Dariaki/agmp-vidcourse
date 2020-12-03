@@ -12,6 +12,7 @@
       <agmp-course-item
         *ngFor="let course of courses | orderBy:'creationDate'"
         [course]="course"
+        [courseStatus]="course.creationDate"
         (deleteCourseEvent)="deleteCourse($event)"
         (editCourseEvent)="editCourse($event)"
       ></agmp-course-item>

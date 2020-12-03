@@ -13,7 +13,7 @@
           <mat-icon class="agmp-menu-icon">access_time</mat-icon>
           <span class="agmp-menu-text course-item__details-text">{{course.durationMin | timeNormalizer}}</span>
         </div>
-        <div [courseStatus]="course.creationDate" class="agmp-menu-container with-icon course-item__creation-menu">
+        <div class="agmp-menu-container with-icon course-item__creation-menu">
           <mat-icon class="agmp-menu-icon">date_range</mat-icon>
           <span class="agmp-menu-text course-item__details-text">{{course.creationDate | date}}</span>
         </div>

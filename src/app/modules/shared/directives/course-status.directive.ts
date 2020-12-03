@@ -39,12 +39,13 @@ export class CourseStatusDirective implements OnInit {
   }
 
   private changeBorder() {
+    let child = this.elemRef.nativeElement.querySelector('.course-item__creation-menu');
     if (this.getCourseStatus() === 'fresh') {
-      this.elemRef.nativeElement.style.border = '4px dashed rgb(153 188 136)';
-      this.elemRef.nativeElement.style.borderRadius = '4px';
+      child.style.border = '4px dashed rgb(153 188 136)';
+      child.style.borderRadius = '4px';
     } else if (this.getCourseStatus() === 'upcoming') {
-      this.elemRef.nativeElement.style.border = '4px dashed rgb(148 210 217)';
-      this.elemRef.nativeElement.style.borderRadius = '4px';
+      child.style.border = '4px dashed rgb(148 210 217)';
+      child.style.borderRadius = '4px';
     }
   }
 
