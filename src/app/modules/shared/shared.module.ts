@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './modules/material/material.module';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { FilterPipe } from './pipes/filter.pipe';
 import { TimeNormalizerPipe } from './pipes/time-normalizer.pipe';
@@ -33,16 +34,20 @@ import { TagInputComponent } from './components/tag-input/tag-input.component';
     TimePickerComponent,
     TagInputComponent
   ],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    FormsModule
+    imports: [
+        CommonModule,
+        MaterialModule,
+        FormsModule,
+        RouterModule
+    ],
+  providers: [
+    FilterPipe
   ],
-  providers: [FilterPipe],
   exports: [
     CommonModule,
     MaterialModule,
     FormsModule,
+    RouterModule,
     FilterPipe,
     OrderByPipe,
     TimeNormalizerPipe,

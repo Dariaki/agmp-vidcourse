@@ -8,22 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  public searchValue: string;
-  public authenticated = true;
 
-  constructor(
-    // private authenticationService: AuthenticationService
-  ) {
-    // this.authenticationService.authenticated$.subscribe(isAuthenticated => {
-    //   console.log('isAuthenticated:', isAuthenticated);
-    //   this.authenticated = isAuthenticated;
-    // })
-  }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  processSearch(search: string) {
-    this.searchValue = search;
-  }
 }

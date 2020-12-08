@@ -7,6 +7,8 @@ import { CourseItemComponent } from './components/course-item/course-item.compon
 import { SearchComponent } from './components/search/search.component';
 import { LoadmoreComponent } from './components/loadmore/loadmore.component';
 import { CreateCourseComponent } from './pages/create-course/create-course.component';
+import { DashboardRoutingModule } from './dashboard-routing.module';
+import { ViewCoursesComponent } from './pages/view-courses/view-courses.component';
 
 
 
@@ -18,13 +20,13 @@ import { CreateCourseComponent } from './pages/create-course/create-course.compo
     CourseItemComponent,
     SearchComponent,
     LoadmoreComponent,
-    CreateCourseComponent
+    CreateCourseComponent,
+    ViewCoursesComponent
   ],
-  exports: [
-    DashboardComponent
-  ],
+  exports: [],
   imports: [
-    SharedModule
+    SharedModule,
+    DashboardRoutingModule
   ]
 })
 export class DashboardModule { }

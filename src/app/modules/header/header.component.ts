@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { IUser } from '../shared/interfaces/user.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'agmp-header',
@@ -14,13 +15,15 @@ export class HeaderComponent implements OnInit {
   public userName = 'User';
 
   constructor(
-    private authenticationService: AuthenticationService
-  ) { }
+    private authenticationService: AuthenticationService,
+    private router: Router
+  ) {
+  }
 
   ngOnInit(): void {
-    this.authenticationService.authenticated$.subscribe(isAuthenticated => {
+    this.authenticationService.getIsAuthenticated$.subscribe(isAuthenticated => {
       this.authenticated = isAuthenticated;
-
+      console.log("AUTH??:",this.authenticated);
       if (this.authenticated) {
         this.userInfo = this.authenticationService.getUserInfo();
         this.userName = this.userInfo.name;
@@ -32,5 +35,6 @@ export class HeaderComponent implements OnInit {
     this.authenticationService.logoutUser();
     console.log(`Bye bye, ${this.userName}!`);
     this.authenticated = false;
+    this.router.navigate(['/login'])
   }
 }

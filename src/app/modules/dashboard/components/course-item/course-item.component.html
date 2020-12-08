@@ -23,7 +23,10 @@
     <div class="course-item__extended-info">
       <p class="course-item__description">{{course.description}}</p>
       <div class="course-item__actions">
-        <button class="btn btn-secondary btn-course" (click)="editCourse(course.id)">
+        <button
+          [routerLink]="['/courses', course.id]"
+          class="btn btn-secondary btn-course"
+          (click)="editCourse(course.id)">
           <mat-icon class="btn-icon">create</mat-icon>
           <span class="btn-text with-icon">Edit</span>
         </button>

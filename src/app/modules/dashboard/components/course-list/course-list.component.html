@@ -1,6 +1,8 @@
 <div class="courselist">
   <div class="courselist__addcourse-container">
-    <button class="btn btn-secondary btn-add">
+    <button
+      [routerLink]="['/courses/create']"
+      class="btn btn-secondary btn-add">
       <mat-icon class="btn-icon">add</mat-icon>
       <span class="btn-text with-icon">Add course</span>
     </button>

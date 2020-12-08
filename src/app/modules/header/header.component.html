@@ -1,7 +1,7 @@
 <header class="header">
   <div class="view-container header__container">
     <div class="header__logo">
-      <a class="logo" href="#">
+      <a class="logo" [routerLink]="authenticated ? ['/courses'] : ['/login']">
         <img class="logo-image" src="../../../assets/images/svg/logo.svg" alt="Website Logo"/>
         <span class="logo-text">Video Course</span>
       </a>
