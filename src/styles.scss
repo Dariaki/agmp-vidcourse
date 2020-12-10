@@ -66,6 +66,8 @@ ul {
   letter-spacing: 1.5px;
 }
 
+// BUTTONS:
+
 .btn {
   color: #ffffff;
   border-radius: 4px;
@@ -77,19 +79,29 @@ ul {
 .btn-primary {
   background-color: $accent-primary;
   padding: 12px 26px;
+
+  &:hover {
+    background-color: darken($accent-primary, 10%);
+  }
 }
 
-.btn-primary:hover {
-  background-color: #3a751c;
+.btn-primary.--btn-invert {
+  color: $text-primary;
+  background-color: $text-secondary;
+
+  &:hover {
+    background-color: darken($text-secondary, 10%);
+  }
 }
 
 .btn-secondary {
   background-color: $accent-secondary;
+
+  &:hover {
+    background-color: darken($accent-secondary, 10%);
+  }
 }
 
-.btn-secondary:hover {
-  background-color: #41939d;
-}
 
 .btn .btn-icon {
   vertical-align: middle;
@@ -101,43 +113,114 @@ ul {
   vertical-align: middle;
 }
 
-.generic-input {
-  height: 40px;
-  outline: none;
-  color: $text-primary;
-  border-radius: 4px;
-  padding: 2px 8px;
-  border: 2px solid #eaeaea;
+// FORM CONTROLS:
 
-  &:focus {
-    box-shadow: 0 2px 6px #b7b7b7;
+.generic-form {
+  margin: 2rem 0;
+  padding: 1.8rem 2rem;
+
+  &__header {
+    margin-bottom: 5px;
   }
-}
 
-.generic-input::placeholder {
-  color: #b5b2b2;
-  opacity: 1; /* Firefox opacity fix */
-}
+  &__header-text {
+    color: $text-primary;
+    letter-spacing: 1px;
+    font-size: 22px;
+  }
 
-.generic-input.with-icon {
-  padding: 2px 8px 2px 32px;
-}
+  &__body {
+    margin: 1.4rem 0 1.2rem 0;
+  }
 
-.generic-input-label.with-icon {
-  position: relative;
-}
+  &__control {
+    margin-bottom: 1rem;
+  }
 
-.generic-input-icon {
-  position: absolute;
-  cursor: pointer;
-  color: $text-primary;
-  top: 50%;
-  left: 2%;
-  transform: translateY(-50%);
-}
+  &__text-area {
+    min-height: 150px;
+    min-width: 100%;
+    max-width: 100%;
+    outline: none;
+    color: $text-primary;
+    border-radius: 4px;
+    padding: 10px 8px;
+    border: 2px solid #eaeaea;
 
-.generic-input-icon:hover {
-  color: #bababa;
+    &:focus {
+      box-shadow: 0 2px 6px #b7b7b7;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__forgot-password-link {
+    font-size: 15px;
+  }
+
+  &__input {
+    height: 40px;
+    width: 100%;
+    outline: none;
+    color: $text-primary;
+    border-radius: 4px;
+    padding: 2px 8px;
+    border: 2px solid #eaeaea;
+
+    &:focus {
+      box-shadow: 0 2px 6px #b7b7b7;
+    }
+  }
+
+  &__input::placeholder,
+  &__text-area::placeholder {
+    color: #b5b2b2;
+    opacity: 1; /* Firefox opacity fix */
+  }
+
+  &__input.with-icon--left {
+    padding: 2px 8px 2px 32px;
+  }
+
+  &__input.with-icon--right {
+    padding: 2px 32px 2px 8px;
+  }
+
+  &__input-label.with-icon {
+    position: relative;
+  }
+
+  &__label {
+    color: $text-primary;
+    font-weight: 500;
+    font-size: 14px;
+    padding-bottom: 5px;
+  }
+
+  &__input-icon,
+  &__input-icon--static
+  {
+    position: absolute;
+    cursor: pointer;
+    color: $text-primary;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &--left {
+      left: 2%;
+    }
+    &--right {
+      right: 2%;
+    }
+  }
+
+  &__input-icon:not(&__input-icon--static):hover {
+    color: #bababa;
+  }
 }
 
 .agmp-menu-container.with-icon .agmp-menu-icon {

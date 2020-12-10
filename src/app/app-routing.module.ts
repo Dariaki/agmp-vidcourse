@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { NotFoundComponent } from './modules/not-found/not-found.component';
 import { LoginComponent } from './modules/login/login.component';
+import {CreateCourseComponent} from './modules/dashboard/pages/create-course/create-course.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent
+  },
+  {
+    path: 'dashboard/create',
+    component: CreateCourseComponent
   },
   {
     path: 'page-not-found',

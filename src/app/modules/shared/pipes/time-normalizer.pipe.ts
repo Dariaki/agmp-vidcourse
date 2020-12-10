@@ -5,7 +5,15 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TimeNormalizerPipe implements PipeTransform {
 
-  transform(minutes: number): string {
+  transform(minutes: number | string): string {
+    if (typeof minutes === 'string') {
+      minutes = parseInt(minutes)
+    }
+
+    if (!minutes) {
+      return ''
+    }
+
     let minutesGiven = minutes;
     let hoursResult = 0;
     let minutesResult;

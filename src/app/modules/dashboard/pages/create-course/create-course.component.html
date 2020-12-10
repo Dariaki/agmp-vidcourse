@@ -1,0 +1,75 @@
+<div class="create-course">
+  <div class="view-container create-course__container">
+    <div class="generic-container generic-form">
+      <form>
+
+        <div class="generic-form__header">
+          <h3 class="generic-form__header-text">New course</h3>
+        </div>
+
+        <div class="generic-form__body">
+          <div class="generic-form__control">
+            <div class="generic-form__label">
+              <label
+                for="title"
+                class="generic-form__label-text">Title:</label>
+            </div>
+            <input
+              [(ngModel)]="courseData.title"
+              name="title"
+              id="title"
+              class="generic-form__input"
+              placeholder="Title"/>
+          </div>
+
+          <div class="generic-form__control">
+            <div class="generic-form__label">
+              <label
+                for="description"
+                class="generic-form__label-text">Description:</label>
+            </div>
+            <textarea
+              [(ngModel)]="courseData.description"
+              name="description"
+              id="description"
+              class="generic-form__text-area"
+              placeholder="Add description"></textarea>
+          </div>
+
+          <div class="generic-form__control">
+            <agmp-date-picker
+              [(inputModel)]="courseData.date"
+            ></agmp-date-picker>
+          </div>
+
+          <div class="generic-form__control">
+            <agmp-time-picker
+              [(inputModel)]="courseData.time"
+            ></agmp-time-picker>
+          </div>
+
+          <div class="generic-form__control">
+            <agmp-tag-input></agmp-tag-input>
+          </div>
+
+        </div>
+
+<!--        FOOTER -->
+        <div class="generic-form__footer create-course-form__footer">
+          <div>
+            <button
+              class="btn btn-primary --btn-invert create-course-form__btn"
+              type="submit"
+            >Cancel</button>
+            <button
+              (click)="createCourse()"
+              class="btn btn-primary create-course-form__btn"
+              type="submit"
+            >Save</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

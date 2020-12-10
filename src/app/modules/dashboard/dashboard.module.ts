@@ -6,6 +6,7 @@ import { CourseListComponent } from './components/course-list/course-list.compon
 import { CourseItemComponent } from './components/course-item/course-item.component';
 import { SearchComponent } from './components/search/search.component';
 import { LoadmoreComponent } from './components/loadmore/loadmore.component';
+import { CreateCourseComponent } from './pages/create-course/create-course.component';
 
 
 
@@ -16,7 +17,8 @@ import { LoadmoreComponent } from './components/loadmore/loadmore.component';
     CourseListComponent,
     CourseItemComponent,
     SearchComponent,
-    LoadmoreComponent
+    LoadmoreComponent,
+    CreateCourseComponent
   ],
   exports: [
     DashboardComponent
