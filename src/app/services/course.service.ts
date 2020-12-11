@@ -18,7 +18,7 @@ export class CourseService {
   }
 
   public createCourse(course: ICourse): void {
-    this.courses.concat({...course});
+    this.courses = this.courses.concat({...course});
   }
 
   public getCourseById(id: string): ICourse {
