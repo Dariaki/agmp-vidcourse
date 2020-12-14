@@ -12,10 +12,16 @@ const routes: Routes = [
     path: '',
     component: DashboardComponent,
     canActivateChild: [AuthorizationGuard],
+    data: {
+      breadcrumbs: 'courses'
+    },
     children: [
       {
         path: '',
         component: ViewCoursesComponent,
+        data: {
+          breadcrumbs: null
+        }
       },
       {
         path: 'create',
@@ -24,6 +30,9 @@ const routes: Routes = [
       {
         path: ':id',
         component: CourseComponent,
+        data: {
+          breadcrumbs: ':id'
+        }
       }
     ]
   }

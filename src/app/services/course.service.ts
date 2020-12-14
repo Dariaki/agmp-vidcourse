@@ -25,6 +25,11 @@ export class CourseService {
     return this.courses.find(course => course.id === id);
   }
 
+  public getCourseTitle(id: string): string {
+    let course =  this.courses.find(course => course.id === id);
+    return course.title;
+  }
+
   public updateCourse(id: string, course: ICourse): void {
     let courseFiltered = this.courses.filter(course => course.id !== id);
     this.courses = courseFiltered.concat({...course});
