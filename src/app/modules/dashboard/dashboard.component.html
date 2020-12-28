@@ -1,14 +1,8 @@
 <div class="dashboard">
-  <div *ngIf="authenticated" class="dashboard__breadcrumbs-container">
+  <div class="dashboard__breadcrumbs-container">
     <div class="view-container">
       <agmp-breadcrumbs></agmp-breadcrumbs>
     </div>
   </div>
-  <div class="view-container dashboard__content-container">
-    <div class="dashboard__search-container">
-      <agmp-search (onSearch)="processSearch($event)"></agmp-search>
-    </div>
-    <agmp-course-list [searchValue]="searchValue"></agmp-course-list>
-  </div>
-<!--  <agmp-create-course></agmp-create-course>-->
+  <router-outlet></router-outlet>
 </div>

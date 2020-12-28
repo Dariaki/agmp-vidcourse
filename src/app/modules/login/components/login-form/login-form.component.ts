@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { IUser } from '../../../shared/interfaces/user.interface';
 import { AuthenticationService } from '../../../../services/authentication.service';
 
@@ -12,7 +14,8 @@ export class LoginFormComponent implements OnInit {
   public userData: IUser;
 
   constructor(
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -34,6 +37,6 @@ export class LoginFormComponent implements OnInit {
       id: Math.floor(Math.random() * 10000).toString()
     })
     this.clearData();
-    console.log('Logged in successfully');
+    this.router.navigate(['/courses'])
   }
 }

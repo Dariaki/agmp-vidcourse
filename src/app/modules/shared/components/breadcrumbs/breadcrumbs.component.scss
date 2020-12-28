@@ -1,0 +1,10 @@
+.breadcrumb {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+
+  &__item:last-of-type &__divider {
+    display: none;
+  }
+}

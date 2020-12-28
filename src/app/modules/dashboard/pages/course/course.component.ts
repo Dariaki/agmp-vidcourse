@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CourseService } from '../../../../services/course.service';
+import { ICourse } from '../../interfaces/course.interface';
 
 @Component({
   selector: 'agmp-course',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseComponent implements OnInit {
 
-  constructor() { }
+  currentRoute: string
+  course: ICourse;
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private courseService: CourseService
+  ) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(path =>
+      this.course = this.courseService.getCourseById(path.id)
+    )
   }
 
 }
