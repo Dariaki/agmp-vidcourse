@@ -7,12 +7,17 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class TimePickerComponent implements OnInit {
 
-  @Input() inputModel: string;
-  @Output() inputModelChange = new EventEmitter<string>();
+  @Input() inputModel: number;
+  @Output() inputModelChange = new EventEmitter<number>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  processTime() {
+    if (this.inputModel) {
+      this.inputModelChange.emit(this.inputModel);
+    }
+  }
 }

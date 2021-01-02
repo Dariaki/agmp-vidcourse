@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ICourse } from '../../interfaces/course.interface';
-import { FilterPipe } from '../../../shared/pipes/filter.pipe';
 import { CourseService } from '../../../../services/course.service';
 
 @Component({
@@ -10,23 +9,34 @@ import { CourseService } from '../../../../services/course.service';
 })
 export class CourseListComponent implements OnInit, OnChanges {
 
-  public courses: ICourse[];
+  public courses: ICourse[] = [];
+  public coursesStart = 0;
+  public coursesCount = 3;
+
   @Input() searchValue: string;
 
   constructor(
-    private filter: FilterPipe,
     private courseService: CourseService
   ) { }
 
   ngOnInit(): void {
-    this.courses = this.courseService.getList();
+    this.courseService.getList(this.coursesStart, this.coursesCount)
+      .then((courses: ICourse[]) => {
+        this.courses = courses;
+      })
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.searchValue.currentValue) {
-      this.courses = this.filter.transform(this.courses, changes.searchValue.currentValue)
+      this.courseService.getList(this.coursesStart, null, changes.searchValue.currentValue)
+        .then((courses: ICourse[]) => {
+          this.courses = courses;
+        })
     } else {
-      this.courses = this.courseService.getList();
+      this.courseService.getList(this.coursesStart, this.coursesCount)
+        .then((courses: ICourse[]) => {
+          this.courses = courses;
+        })
     }
     console.log("changes.searchValue", changes.searchValue);
   }
@@ -38,12 +48,25 @@ export class CourseListComponent implements OnInit, OnChanges {
   public deleteCourse(id: string) {
     let response = this.displayModal()
     if (response) {
-      this.courseService.removeCourse(id);
-      this.courses = this.courseService.getList();
+      this.courseService.removeCourse(id)
+        .then(() => {
+          this.courseService.getList()
+            .then((courses: ICourse[]) => {
+              this.courses = courses;
+            })
+        })
     }
   }
 
   public editCourse(id: string) {
     console.log('Edit event emitted with id: ', id);
+  }
+
+  loadCourses() {
+    this.coursesCount += 3
+    this.courseService.getList(this.coursesStart, this.coursesCount)
+      .then((courses: ICourse[]) => {
+        this.courses = courses;
+      })
   }
 }

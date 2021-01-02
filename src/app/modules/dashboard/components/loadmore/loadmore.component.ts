@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'agmp-loadmore',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoadmoreComponent implements OnInit {
 
+  @Output() loadCourses = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  loadMore() {
+    this.loadCourses.emit();
+  }
 }

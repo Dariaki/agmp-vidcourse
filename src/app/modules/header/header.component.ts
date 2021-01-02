@@ -25,8 +25,10 @@ export class HeaderComponent implements OnInit {
       this.authenticated = isAuthenticated;
       console.log("AUTH??:",this.authenticated);
       if (this.authenticated) {
-        this.userInfo = this.authenticationService.getUserInfo();
-        this.userName = this.userInfo.name;
+        this.authenticationService.getUserInfo().then(user => {
+          this.userInfo = user
+          this.userName = `${this.userInfo.name.first} ${this.userInfo.name.last}`;
+        })
       }
     })
   }
