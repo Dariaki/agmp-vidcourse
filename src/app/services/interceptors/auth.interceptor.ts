@@ -8,7 +8,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     const token = localStorage.getItem('token');
 
-    if (req.headers.get('skip')) {
+    if (req.url.includes('/auth/login')) {
       return next.handle(req);
     } else {
       const authReq = req.clone({

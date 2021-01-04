@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ILogin, IUser } from '../modules/shared/interfaces/user.interface';
 import { IToken } from '../modules/shared/interfaces/token.interface';
 import { BehaviorSubject, from, Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +21,7 @@ export class AuthenticationService {
   // Method saves token to LS.
   public loginUser(user: ILogin): Promise<void> {
     // httpClient returns Observable, loginUser method returns promise
-    return this.httpClient.post<IToken>('http://localhost:3004/auth/login', user, {
-      headers: new HttpHeaders({
-        'skip': 'true'
-      })
-    })
+    return this.httpClient.post<IToken>('http://localhost:3004/auth/login', user)
       .toPromise()
       .then((token: IToken) => {
         localStorage.setItem('token', token.token);
