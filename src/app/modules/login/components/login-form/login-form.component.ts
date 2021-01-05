@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { IUser } from '../../../shared/interfaces/user.interface';
+import { ILogin } from '../../../shared/interfaces/user.interface';
 import { AuthenticationService } from '../../../../services/authentication.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { AuthenticationService } from '../../../../services/authentication.servi
 })
 export class LoginFormComponent implements OnInit {
 
-  public userData: IUser;
+  public userData: ILogin;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -24,19 +24,18 @@ export class LoginFormComponent implements OnInit {
 
   public clearData() {
     this.userData = {
-      id: '',
-      name: '',
-      email: '',
+      login: '',
       password: ''
     }
   }
 
   public submitLoginInfo() {
+    // should return promise
     this.authenticationService.loginUser({
-      ...this.userData,
-      id: Math.floor(Math.random() * 10000).toString()
+      ...this.userData
+    }).then(() => {
+      this.clearData();
+      this.router.navigate(['/courses'])
     })
-    this.clearData();
-    this.router.navigate(['/courses'])
   }
 }

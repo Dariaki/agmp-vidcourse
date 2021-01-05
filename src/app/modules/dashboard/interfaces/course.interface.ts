@@ -1,8 +1,15 @@
 export interface ICourse {
-  id: string,
-  title: string,
-  creationDate: number,
-  durationMin: number,
-  topRated: boolean,
-  description: string
+  id: number;
+  name: string;
+  length: number;
+  description: string;
+  date: string;
+  authors: Array<IAuthor>;
+  isTopRated: boolean;
 }
+
+export interface IAuthor {
+  id: number;
+  name: string;
+}
+

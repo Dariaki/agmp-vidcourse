@@ -6,7 +6,7 @@
   </div>
   <input
     [(ngModel)]="inputModel"
-    (ngModelChange)="inputModelChange.emit(inputModel)"
+    (ngModelChange)="processTime()"
     name="time"
     id="time"
     type="number"

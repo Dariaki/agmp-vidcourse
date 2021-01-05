@@ -15,7 +15,7 @@
                 class="generic-form__label-text">Title:</label>
             </div>
             <input
-              [(ngModel)]="courseData.title"
+              [(ngModel)]="courseData.name"
               name="title"
               id="title"
               class="generic-form__input"
@@ -44,7 +44,7 @@
 
           <div class="generic-form__control">
             <agmp-time-picker
-              [(inputModel)]="courseData.time"
+              [(inputModel)]="courseData.length"
             ></agmp-time-picker>
           </div>
 

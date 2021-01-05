@@ -12,14 +12,16 @@
     *ngIf="courses.length > 0; else noCourses">
     <ul>
       <agmp-course-item
-        *ngFor="let course of courses | orderBy:'creationDate'"
+        *ngFor="let course of courses"
         [course]="course"
-        [courseStatus]="course.creationDate"
+        [courseStatus]="course.date"
         (deleteCourseEvent)="deleteCourse($event)"
         (editCourseEvent)="editCourse($event)"
       ></agmp-course-item>
     </ul>
-    <agmp-loadmore></agmp-loadmore>
+    <agmp-loadmore
+      (loadCourses)="loadCourses()"
+    ></agmp-loadmore>
   </div>
   <ng-template #noCourses>
     <div class="generic-container courselist__course-container no-courses">

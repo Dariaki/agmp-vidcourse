@@ -11,7 +11,7 @@ export class FilterPipe implements PipeTransform {
     if (!search.trim()) {
       return courses;
     }
-    let filteredCourse =  courses.filter(course => course.title.toLowerCase().includes(search.toLowerCase()))
+    let filteredCourse =  courses.filter(course => course.name.toLowerCase().includes(search.toLowerCase()))
 
     if (filteredCourse.length === 0) {
       return courses;

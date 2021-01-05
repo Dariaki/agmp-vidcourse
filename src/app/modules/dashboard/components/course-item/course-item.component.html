@@ -1,21 +1,21 @@
 <li
-  [ngClass]="course.topRated ? 'course-item__top-rated' : ''"
+  [ngClass]="course.isTopRated ? 'course-item__top-rated' : ''"
   class="course-item generic-container">
     <div class="course-item__general-info">
       <h3 class="course-item__title"
-      ><span class="course-item__title-text">{{course.title | uppercase}}</span>
+      ><span class="course-item__title-text">{{course.name | uppercase}}</span>
       <mat-icon
-        *ngIf="course.topRated"
+        *ngIf="course.isTopRated"
         class="course-item__top-rated-icon">star</mat-icon>
       </h3>
       <div class="course-item__details">
         <div class="agmp-menu-container with-icon course-item__duration-menu">
           <mat-icon class="agmp-menu-icon">access_time</mat-icon>
-          <span class="agmp-menu-text course-item__details-text">{{course.durationMin | timeNormalizer}}</span>
+          <span class="agmp-menu-text course-item__details-text">{{course.length | timeNormalizer}}</span>
         </div>
         <div class="agmp-menu-container with-icon course-item__creation-menu">
           <mat-icon class="agmp-menu-icon">date_range</mat-icon>
-          <span class="agmp-menu-text course-item__details-text">{{course.creationDate | date}}</span>
+          <span class="agmp-menu-text course-item__details-text">{{course.date | date}}</span>
         </div>
       </div>
     </div>
@@ -26,11 +26,11 @@
         <button
           [routerLink]="['/courses', course.id]"
           class="btn btn-secondary btn-course"
-          (click)="editCourse(course.id)">
+          (click)="editCourse(course.id.toString())">
           <mat-icon class="btn-icon">create</mat-icon>
           <span class="btn-text with-icon">Edit</span>
         </button>
-        <button class="btn btn-secondary btn-course" (click)="deleteCourse(course.id)">
+        <button class="btn btn-secondary btn-course" (click)="deleteCourse(course.id.toString())">
           <mat-icon class="btn-icon">delete</mat-icon>
           <span class="btn-text with-icon">Delete</span>
         </button>

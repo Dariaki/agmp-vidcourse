@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ICourse } from '../../interfaces/course.interface';
+import { CourseService } from '../../../../services/course.service';
 
 @Component({
   selector: 'agmp-create-course',
@@ -7,21 +10,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateCourseComponent implements OnInit {
 
-  public courseData;
+  public courseData: ICourse;
 
-  constructor() {
+  constructor(
+    private courseService: CourseService,
+    private router: Router
+  ) { }
+
+  ngOnInit(): void {
+    this.clearData();
+  }
+
+  clearData() {
     this.courseData = {
-      title: '',
+      id: null,
+      name: '',
+      length: 0,
       description: '',
       date: '',
-      time: ''
+      authors: [],
+      isTopRated: false
     }
   }
 
-  ngOnInit(): void {
-  }
-
   createCourse() {
-    console.log('Course Data:', this.courseData);
+    // console.log('Course Data:', this.courseData);
+    this.courseData.id = Math.floor(Math.random() * 1001);
+    this.courseService.createCourse({...this.courseData})
+      .then(() => {
+        this.clearData();
+        this.router.navigate(['/courses'])
+      })
   }
 }
