@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { ILogin, IUser } from '../modules/shared/interfaces/user.interface';
 import { IToken } from '../modules/shared/interfaces/token.interface';
-import { BehaviorSubject, from, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { DataLoaderService } from './data-loader.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,50 +14,56 @@ export class AuthenticationService {
 
   public authenticated$ = new BehaviorSubject(false);
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient,
+    private _dataLoaderService: DataLoaderService
+    ) { }
 
   get getIsAuthenticated$(): Observable<boolean> {
     this._processIsAuthenticated();
-    return this.authenticated$
+    return this.authenticated$;
   }
 
   // Method saves token to LS.
-  public loginUser(user: ILogin): Promise<void> {
-    // httpClient returns Observable, loginUser method returns promise
+  public loginUser(user: ILogin): Observable<void> {
+    this._dataLoaderService.showDataLoader();
+    // httpClient returns Observable, map returns another observable from data data received;
     return this.httpClient.post<IToken>('http://localhost:3004/auth/login', user)
-      .toPromise()
-      .then((token: IToken) => {
-        localStorage.setItem('token', token.token);
-        this.isAuthenticated().then(isAuthenticated => {
-          this.authenticated$.next(isAuthenticated);
+      .pipe(
+        map((token: IToken) => {
+          localStorage.setItem('token', token.token);
+          this.isAuthenticated().subscribe((isAuthenticated) => {
+            this.authenticated$.next(isAuthenticated);
+          })
         })
-      })
+      )
   }
 
   public logoutUser() {
+    this._dataLoaderService.showDataLoader();
     localStorage.removeItem('token');
-    this.isAuthenticated().then(isAuthenticated => {
+    this.isAuthenticated().subscribe((isAuthenticated) => {
       this.authenticated$.next(isAuthenticated);
     })
   }
 
-  public isAuthenticated(): Promise<boolean> {
-    return new Promise(resolve => {
+  public isAuthenticated(): Observable<boolean> {
+    return new Observable(subscriber => {
       let token = localStorage.getItem('token');
-      resolve(!!token)
+      subscriber.next(!!token);
     })
   }
 
   // post. After sending token we gets back userInfo
-  public getUserInfo() {
+  public getUserInfo(): Observable<IUser> {
+    this._dataLoaderService.showDataLoader();
     let token = localStorage.getItem('token');
     return this.httpClient.post<IUser>('http://localhost:3004/auth/userinfo', { token })
-      .toPromise()
   }
 
-  private _processIsAuthenticated(): Observable<void> {
-    return from(this.isAuthenticated().then(isAuth => {
+  private _processIsAuthenticated() {
+    this.isAuthenticated().subscribe((isAuth) => {
       this.authenticated$.next(isAuth)
-    }));
+    })
   }
 }

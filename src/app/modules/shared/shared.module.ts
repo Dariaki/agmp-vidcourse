@@ -17,6 +17,7 @@ import { GenericTextareaComponent } from './components/generic-textarea/generic-
 import { DatePickerComponent } from './components/date-picker/date-picker.component';
 import { TimePickerComponent } from './components/time-picker/time-picker.component';
 import { TagInputComponent } from './components/tag-input/tag-input.component';
+import { DataLoaderComponent } from './components/data-loader/data-loader.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { TagInputComponent } from './components/tag-input/tag-input.component';
     GenericTextareaComponent,
     DatePickerComponent,
     TimePickerComponent,
-    TagInputComponent
+    TagInputComponent,
+    DataLoaderComponent
   ],
     imports: [
         CommonModule,
@@ -59,7 +61,8 @@ import { TagInputComponent } from './components/tag-input/tag-input.component';
     CourseStatusDirective,
     TagInputComponent,
     TimePickerComponent,
-    DatePickerComponent
+    DatePickerComponent,
+    DataLoaderComponent
   ],
 })
 export class SharedModule { }

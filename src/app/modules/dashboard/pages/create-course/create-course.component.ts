@@ -37,7 +37,7 @@ export class CreateCourseComponent implements OnInit {
     // console.log('Course Data:', this.courseData);
     this.courseData.id = Math.floor(Math.random() * 1001);
     this.courseService.createCourse({...this.courseData})
-      .then(() => {
+      .subscribe(() => {
         this.clearData();
         this.router.navigate(['/courses'])
       })

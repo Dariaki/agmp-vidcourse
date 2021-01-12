@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CourseService } from '../../../../services/course.service';
+
 import { ICourse } from '../../interfaces/course.interface';
+import { CourseService } from '../../../../services/course.service';
+import { DataLoaderService } from '../../../../services/data-loader.service';
 
 @Component({
   selector: 'agmp-course',
@@ -16,12 +18,16 @@ export class CourseComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private _dataLoaderService: DataLoaderService,
     private courseService: CourseService
   ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(path =>
-      this.course = this.courseService.getCourseById(path.id)
+      this.courseService.getCourseById(path.id).subscribe(course => {
+        this.course = course;
+        this._dataLoaderService.hideDataLoader();
+      })
     )
   }
 

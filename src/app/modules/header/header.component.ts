@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../../services/authentication.service';
-import { IUser } from '../shared/interfaces/user.interface';
 import { Router } from '@angular/router';
+
+import { IUser } from '../shared/interfaces/user.interface';
+import { AuthenticationService } from '../../services/authentication.service';
+import { DataLoaderService } from '../../services/data-loader.service';
 
 @Component({
   selector: 'agmp-header',
@@ -16,6 +18,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private authenticationService: AuthenticationService,
+    private _dataLoaderService: DataLoaderService,
     private router: Router
   ) {
   }
@@ -25,18 +28,26 @@ export class HeaderComponent implements OnInit {
       this.authenticated = isAuthenticated;
       console.log("AUTH??:",this.authenticated);
       if (this.authenticated) {
-        this.authenticationService.getUserInfo().then(user => {
-          this.userInfo = user
-          this.userName = `${this.userInfo.name.first} ${this.userInfo.name.last}`;
+        this.authenticationService.getUserInfo().subscribe(user => {
+          if (user) {
+            setTimeout(() => {
+              this.userInfo = user
+              this.userName = `${this.userInfo.name.first} ${this.userInfo.name.last}`;
+              this._dataLoaderService.hideDataLoader();
+            }, 200)
+          }
         })
       }
     })
   }
 
   public logOff() {
-    this.authenticationService.logoutUser();
-    console.log(`Bye bye, ${this.userName}!`);
-    this.authenticated = false;
-    this.router.navigate(['/login'])
+    this.authenticationService.logoutUser()
+    setTimeout(() => {
+      this._dataLoaderService.hideDataLoader();
+      console.log(`Bye bye, ${this.userName}!`);
+      this.authenticated = false;
+      this.router.navigate(['/login'])
+    }, 200)
   }
 }
