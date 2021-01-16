@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit {
       this.authenticated = isAuthenticated;
       console.log("AUTH??:",this.authenticated);
       if (this.authenticated) {
+        this._dataLoaderService.showDataLoader();
         this.authenticationService.getUserInfo().subscribe(user => {
           if (user) {
             setTimeout(() => {
@@ -42,6 +43,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public logOff() {
+    this._dataLoaderService.showDataLoader();
     this.authenticationService.logoutUser()
     setTimeout(() => {
       this._dataLoaderService.hideDataLoader();

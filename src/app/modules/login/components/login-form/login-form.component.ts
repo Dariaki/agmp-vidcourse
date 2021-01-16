@@ -32,6 +32,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   public submitLoginInfo() {
+    this._dataLoaderService.showDataLoader();
     // should return promise
     this.authenticationService.loginUser({
       ...this.userData

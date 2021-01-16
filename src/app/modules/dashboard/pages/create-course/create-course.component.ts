@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ICourse } from '../../interfaces/course.interface';
 import { CourseService } from '../../../../services/course.service';
+import { DataLoaderService } from '../../../../services/data-loader.service';
 
 @Component({
   selector: 'agmp-create-course',
@@ -14,7 +15,8 @@ export class CreateCourseComponent implements OnInit {
 
   constructor(
     private courseService: CourseService,
-    private router: Router
+    private router: Router,
+    private _dataLoaderService: DataLoaderService
   ) { }
 
   ngOnInit(): void {
@@ -36,6 +38,7 @@ export class CreateCourseComponent implements OnInit {
   createCourse() {
     // console.log('Course Data:', this.courseData);
     this.courseData.id = Math.floor(Math.random() * 1001);
+    this._dataLoaderService.showDataLoader();
     this.courseService.createCourse({...this.courseData})
       .subscribe(() => {
         this.clearData();

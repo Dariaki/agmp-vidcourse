@@ -27,6 +27,7 @@ export class CourseListComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.searchValue.currentValue) {
+      this._dataLoaderService.showDataLoader();
       this._courseService.getList(this.coursesStart, null, changes.searchValue.currentValue)
         .subscribe((courses: ICourse[]) => {
           if (courses) {
@@ -37,13 +38,12 @@ export class CourseListComponent implements OnInit, OnChanges {
           }
         })
     } else {
+      this._dataLoaderService.showDataLoader();
       this._courseService.getList(this.coursesStart, this.coursesCount)
         .subscribe((courses: ICourse[]) => {
           if (courses) {
-            setTimeout(() => {
               this.courses = courses;
               this._dataLoaderService.hideDataLoader();
-            }, 300)
           }
         })
     }
@@ -57,14 +57,13 @@ export class CourseListComponent implements OnInit, OnChanges {
   public deleteCourse(id: string) {
     let response = this.displayModal()
     if (response) {
+      this._dataLoaderService.showDataLoader();
       this._courseService.removeCourse(id)
         .subscribe(() => {
           this._courseService.getList()
             .subscribe((courses: ICourse[]) => {
-              setTimeout(() => {
                 this.courses = courses;
                 this._dataLoaderService.hideDataLoader();
-              }, 300)
             })
         })
     }
@@ -76,6 +75,7 @@ export class CourseListComponent implements OnInit, OnChanges {
 
   loadCourses() {
     this.coursesCount += 3
+    this._dataLoaderService.showDataLoader();
     this._courseService.getList(this.coursesStart, this.coursesCount)
       .subscribe((courses: ICourse[]) => {
         setTimeout(() => {

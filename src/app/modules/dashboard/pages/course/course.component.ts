@@ -23,6 +23,7 @@ export class CourseComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this._dataLoaderService.showDataLoader();
     this.route.params.subscribe(path =>
       this.courseService.getCourseById(path.id).subscribe(course => {
         this.course = course;

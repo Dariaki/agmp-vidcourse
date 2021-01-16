@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 
 import { ILogin, IUser } from '../modules/shared/interfaces/user.interface';
 import { IToken } from '../modules/shared/interfaces/token.interface';
-import { DataLoaderService } from './data-loader.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +15,7 @@ export class AuthenticationService {
   public authenticated$ = new BehaviorSubject(false);
 
   constructor(
-    private httpClient: HttpClient,
-    private _dataLoaderService: DataLoaderService
+    private httpClient: HttpClient
     ) { }
 
   get getIsAuthenticated$(): Observable<boolean> {
@@ -26,7 +25,6 @@ export class AuthenticationService {
 
   // Method saves token to LS.
   public loginUser(user: ILogin): Observable<void> {
-    this._dataLoaderService.showDataLoader();
     // httpClient returns Observable, map returns another observable from data data received;
     return this.httpClient.post<IToken>('http://localhost:3004/auth/login', user)
       .pipe(
@@ -40,7 +38,6 @@ export class AuthenticationService {
   }
 
   public logoutUser() {
-    this._dataLoaderService.showDataLoader();
     localStorage.removeItem('token');
     this.isAuthenticated().subscribe((isAuthenticated) => {
       this.authenticated$.next(isAuthenticated);
@@ -56,7 +53,6 @@ export class AuthenticationService {
 
   // post. After sending token we gets back userInfo
   public getUserInfo(): Observable<IUser> {
-    this._dataLoaderService.showDataLoader();
     let token = localStorage.getItem('token');
     return this.httpClient.post<IUser>('http://localhost:3004/auth/userinfo', { token })
   }
