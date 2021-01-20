@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ICourse } from '../modules/dashboard/interfaces/course.interface';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { ICourse } from '../modules/dashboard/interfaces/course.interface';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +17,7 @@ export class CourseService {
     private httpClient: HttpClient
   ) { }
 
-  public getList(start = 0, count = 3, textFragment = ''): Promise<ICourse[]> {
+  public getList(start = 0, count = 3, textFragment = ''): Observable<ICourse[]> {
     return this.httpClient.get<ICourse[]>('http://localhost:3004/courses', {
       params: new HttpParams()
         .set('start', `${start}`)
@@ -21,27 +25,34 @@ export class CourseService {
         .set('sort', 'date')
         .set('textFragment', textFragment)
     })
-    .toPromise()
-    .then((courses: ICourse[]) => {
-      this.courses = courses;
-      return this.courses;
+    .pipe(
+      map((courses: ICourse[]) => {
+        this.courses = courses;
+        return this.courses;
+      })
+    )
+  }
+
+  public createCourse(course: ICourse): Observable<ICourse> {
+    return this.httpClient.post('http://localhost:3004/courses', course)
+      .pipe(
+        map((course: ICourse) => {
+          return course;
+        })
+      )
+  }
+
+  public getCourseById(id: string): Observable<ICourse> {
+    return new Observable<ICourse>((subscriber) => {
+      setTimeout(() => {
+        let course = this.courses.find(course => course.id.toString() === id);
+        subscriber.next(course);
+      }, 500)
     })
   }
 
-  public createCourse(course: ICourse): Promise<ICourse> {
-    return this.httpClient.post('http://localhost:3004/courses', course)
-      .toPromise()
-      .then((course: ICourse) => {
-        return course;
-      })
-  }
-
-  public getCourseById(id: string): ICourse {
-    return this.courses.find(course => course.id.toString() === id);
-  }
-
   public getCourseTitle(id: string): string {
-    let course =  this.courses.find(course => course.id.toString() === id);
+    let course = this.courses.find(course => course.id.toString() === id);
     return course.name;
   }
 
@@ -50,9 +61,8 @@ export class CourseService {
     this.courses = courseFiltered.concat({...course});
   }
 
-  public removeCourse(id: string): Promise<void> {
+  public removeCourse(id: string): Observable<void> {
     return this.httpClient.delete<void>(`http://localhost:3004/courses/${id}`)
-      .toPromise()
   }
 
 }

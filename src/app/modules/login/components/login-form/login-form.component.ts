@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { ILogin } from '../../../shared/interfaces/user.interface';
 import { AuthenticationService } from '../../../../services/authentication.service';
+import { DataLoaderService } from '../../../../services/data-loader.service';
 
 @Component({
   selector: 'agmp-login-form',
@@ -15,6 +16,7 @@ export class LoginFormComponent implements OnInit {
 
   constructor(
     private authenticationService: AuthenticationService,
+    private _dataLoaderService: DataLoaderService,
     private router: Router
   ) { }
 
@@ -30,12 +32,16 @@ export class LoginFormComponent implements OnInit {
   }
 
   public submitLoginInfo() {
+    this._dataLoaderService.showDataLoader();
     // should return promise
     this.authenticationService.loginUser({
       ...this.userData
-    }).then(() => {
-      this.clearData();
-      this.router.navigate(['/courses'])
+    }).subscribe(() => {
+      setTimeout(() => {
+        this._dataLoaderService.hideDataLoader();
+        this.clearData();
+        this.router.navigate(['/courses'])
+      }, 200)
     })
   }
 }

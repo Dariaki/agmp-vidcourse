@@ -1,6 +1,8 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+
 import { ICourse } from '../../interfaces/course.interface';
 import { CourseService } from '../../../../services/course.service';
+import { DataLoaderService } from '../../../../services/data-loader.service';
 
 @Component({
   selector: 'agmp-course-list',
@@ -13,32 +15,39 @@ export class CourseListComponent implements OnInit, OnChanges {
   public coursesStart = 0;
   public coursesCount = 3;
 
+
   @Input() searchValue: string;
 
   constructor(
-    private courseService: CourseService
+    private _courseService: CourseService,
+    private _dataLoaderService: DataLoaderService
   ) { }
 
-  ngOnInit(): void {
-    this.courseService.getList(this.coursesStart, this.coursesCount)
-      .then((courses: ICourse[]) => {
-        this.courses = courses;
-      })
-  }
+  ngOnInit(): void { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.searchValue.currentValue) {
-      this.courseService.getList(this.coursesStart, null, changes.searchValue.currentValue)
-        .then((courses: ICourse[]) => {
-          this.courses = courses;
+      this._dataLoaderService.showDataLoader();
+      this._courseService.getList(this.coursesStart, null, changes.searchValue.currentValue)
+        .subscribe((courses: ICourse[]) => {
+          if (courses) {
+            setTimeout(() => {
+              this.courses = courses;
+              this._dataLoaderService.hideDataLoader();
+            }, 100)
+          }
         })
     } else {
-      this.courseService.getList(this.coursesStart, this.coursesCount)
-        .then((courses: ICourse[]) => {
-          this.courses = courses;
+      this._dataLoaderService.showDataLoader();
+      this._courseService.getList(this.coursesStart, this.coursesCount)
+        .subscribe((courses: ICourse[]) => {
+          if (courses) {
+              this.courses = courses;
+              this._dataLoaderService.hideDataLoader();
+          }
         })
     }
-    console.log("changes.searchValue", changes.searchValue);
+
   }
 
   public displayModal() {
@@ -48,11 +57,13 @@ export class CourseListComponent implements OnInit, OnChanges {
   public deleteCourse(id: string) {
     let response = this.displayModal()
     if (response) {
-      this.courseService.removeCourse(id)
-        .then(() => {
-          this.courseService.getList()
-            .then((courses: ICourse[]) => {
-              this.courses = courses;
+      this._dataLoaderService.showDataLoader();
+      this._courseService.removeCourse(id)
+        .subscribe(() => {
+          this._courseService.getList()
+            .subscribe((courses: ICourse[]) => {
+                this.courses = courses;
+                this._dataLoaderService.hideDataLoader();
             })
         })
     }
@@ -64,9 +75,13 @@ export class CourseListComponent implements OnInit, OnChanges {
 
   loadCourses() {
     this.coursesCount += 3
-    this.courseService.getList(this.coursesStart, this.coursesCount)
-      .then((courses: ICourse[]) => {
-        this.courses = courses;
+    this._dataLoaderService.showDataLoader();
+    this._courseService.getList(this.coursesStart, this.coursesCount)
+      .subscribe((courses: ICourse[]) => {
+        setTimeout(() => {
+          this.courses = courses;
+          this._dataLoaderService.hideDataLoader();
+        }, 300)
       })
   }
 }

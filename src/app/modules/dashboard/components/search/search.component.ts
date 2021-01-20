@@ -1,4 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Subject} from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'agmp-search',
@@ -7,17 +9,30 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
+  $search = new Subject<string>();
   searchValue: string;
   @Output() onSearch: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
     this.searchValue = ""
+
+    this.$search
+      .pipe(
+        filter(value => value.length > 3 || value.length === 0),
+        debounceTime(1000),
+        distinctUntilChanged()
+      )
+      .subscribe(value => {
+        this.onSearch.emit(value)
+      })
+
   }
 
   search() {
-    this.onSearch.emit(this.searchValue)
+    this.$search.next(this.searchValue);
     // console.log('Search Value: ', this.searchValue);
   }
 }

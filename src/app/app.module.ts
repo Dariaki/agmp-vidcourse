@@ -13,6 +13,7 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { NotFoundModule } from './modules/not-found/not-found.module';
 
 import { AuthInterceptor } from './services/interceptors/auth.interceptor';
+import {SharedModule} from './modules/shared/shared.module';
 
 
 
@@ -30,7 +31,8 @@ import { AuthInterceptor } from './services/interceptors/auth.interceptor';
     AppRoutingModule,
     LoginModule,
     DashboardModule,
-    NotFoundModule
+    NotFoundModule,
+    SharedModule
   ],
   providers: [
     {

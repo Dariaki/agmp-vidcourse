@@ -72,7 +72,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "agmp-vidcourse:build"
+            "browserTarget": "agmp-vidcourse:build",
+            "port": 1337
           },
           "configurations": {
             "production": {

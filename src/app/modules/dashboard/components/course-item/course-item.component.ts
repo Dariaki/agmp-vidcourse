@@ -8,7 +8,7 @@ import {
   Output,
   SimpleChanges
 } from '@angular/core';
-import {ICourse} from '../../interfaces/course.interface';
+import { ICourse } from '../../interfaces/course.interface';
 
 @Component({
   selector: 'agmp-course-item',
@@ -27,8 +27,8 @@ export class CourseItemComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log("ngOnChanges: ", changes);
-    console.log("ngOnChanges: ", changes.course.currentValue);
+    // console.log("ngOnChanges: ", changes);
+    // console.log("ngOnChanges: ", changes.course.currentValue);
   }
 
   ngOnInit(): void {
