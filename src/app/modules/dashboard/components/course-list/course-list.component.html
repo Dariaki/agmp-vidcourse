@@ -9,10 +9,10 @@
   </div>
   <div
     class="courselist__course-container"
-    *ngIf="courses.length > 0; else noCourses">
+    *ngIf="(courses$ | async)?.length > 0; else noCourses">
     <ul>
       <agmp-course-item
-        *ngFor="let course of courses"
+        *ngFor="let course of courses$ | async"
         [course]="course"
         [courseStatus]="course.date"
         (deleteCourseEvent)="deleteCourse($event)"

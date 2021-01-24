@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import * as AuthenticationActions from '../../store/actions/authentication.actions';
+import { UserState } from '../shared/interfaces/states/user.state';
 
 import { IUser } from '../shared/interfaces/user.interface';
 import { AuthenticationService } from '../../services/authentication.service';
@@ -12,15 +17,17 @@ import { DataLoaderService } from '../../services/data-loader.service';
 })
 export class HeaderComponent implements OnInit {
 
+  public user$: Observable<IUser>
   public authenticated = false;
-  public userInfo: IUser;
   public userName = 'User';
 
   constructor(
     private authenticationService: AuthenticationService,
     private _dataLoaderService: DataLoaderService,
-    private router: Router
+    private router: Router,
+    private store: Store<UserState>
   ) {
+    this.user$ = store.select(store => store.user);
   }
 
   ngOnInit(): void {
@@ -32,9 +39,11 @@ export class HeaderComponent implements OnInit {
         this.authenticationService.getUserInfo().subscribe(user => {
           if (user) {
             setTimeout(() => {
-              this.userInfo = user
-              this.userName = `${this.userInfo.name.first} ${this.userInfo.name.last}`;
-              this._dataLoaderService.hideDataLoader();
+              this.store.dispatch(new AuthenticationActions.SaveUser({...user}))
+              this.user$.subscribe( user => {
+                this.userName = `${user.name.first} ${user.name.last}`;
+                this._dataLoaderService.hideDataLoader();
+              })
             }, 200)
           }
         })
