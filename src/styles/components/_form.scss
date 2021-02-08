@@ -1,0 +1,129 @@
+// FORM CONTROLS:
+
+.generic-form {
+  margin: 2rem 0;
+  padding: 1.8rem 2rem;
+
+  &__header {
+    margin-bottom: 5px;
+  }
+
+  &__header-text {
+    color: $text-primary;
+    letter-spacing: 1px;
+    font-size: 22px;
+  }
+
+  &__body {
+    margin: 1.4rem 0 1.2rem 0;
+  }
+
+  &__control {
+    margin-bottom: 1rem;
+  }
+
+  &__text-area {
+    min-height: 150px;
+    min-width: 100%;
+    max-width: 100%;
+    outline: none;
+    color: $text-primary;
+    border-radius: 4px;
+    padding: 10px 8px;
+    border: 2px solid #eaeaea;
+
+    &:focus {
+      box-shadow: 0 2px 6px #b7b7b7;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__forgot-password-link {
+    font-size: 15px;
+  }
+
+  &__input {
+    height: 40px;
+    width: 100%;
+    outline: none;
+    color: $text-primary;
+    border-radius: 4px;
+    padding: 2px 8px;
+    border: 2px solid #eaeaea;
+
+    &:focus {
+      box-shadow: 0 2px 6px #b7b7b7;
+    }
+  }
+
+  &__input::placeholder,
+  &__text-area::placeholder {
+    color: #b5b2b2;
+    opacity: 1; /* Firefox opacity fix */
+  }
+
+  &__input.with-icon--left {
+    padding: 2px 8px 2px 32px;
+  }
+
+  &__input.with-icon--right {
+    padding: 2px 32px 2px 8px;
+  }
+
+  &__input-label.with-icon {
+    position: relative;
+  }
+
+  &__label {
+    color: $text-primary;
+    font-weight: 500;
+    font-size: 14px;
+    padding-bottom: 5px;
+  }
+
+  .required {
+    color: $error;
+  }
+
+  .error-message {
+    display: inline-block;
+    margin-top: 2px;
+    font-size: 12px;
+    color: $error;
+  }
+
+  &__input-icon,
+  &__input-icon--static
+  {
+    position: absolute;
+    cursor: pointer;
+    color: $text-primary;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &--left {
+      left: 2%;
+    }
+    &--right {
+      right: 2%;
+    }
+  }
+
+  &__input-icon:not(&__input-icon--static):hover {
+    color: #bababa;
+  }
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}

@@ -1,0 +1,19 @@
+// PROJECT LOGO:
+
+.logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo .logo-image {
+  margin-right: 12px;
+}
+
+.logo .logo-text {
+  text-transform: uppercase;
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+}

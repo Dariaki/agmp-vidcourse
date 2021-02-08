@@ -1,0 +1,60 @@
+// BUTTONS:
+
+.btn {
+  color: #ffffff;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: $accent-primary;
+  padding: 12px 26px;
+
+  &:hover {
+    background-color: darken($accent-primary, 10%);
+  }
+}
+
+.btn-primary.--btn-invert {
+  color: $text-primary;
+  background-color: $text-secondary;
+
+  &:hover {
+    background-color: darken($text-secondary, 10%);
+  }
+}
+
+.btn-secondary {
+  background-color: $accent-secondary;
+
+  &:hover {
+    background-color: darken($accent-secondary, 10%);
+  }
+}
+
+.btn .btn-icon {
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+.btn .btn-text.with-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.btn:disabled {
+  background-color: $text-secondary;
+  cursor: auto;
+}
+
+.mock-link {
+  text-decoration: underline;
+  color: $mock-link;
+  cursor: pointer;
+
+  &:hover {
+    color: darken($mock-link, 10%);
+  }
+}
