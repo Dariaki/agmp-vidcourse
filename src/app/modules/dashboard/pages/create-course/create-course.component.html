@@ -1,57 +1,66 @@
 <div class="create-course">
   <div class="view-container create-course__container">
     <div class="generic-container generic-form">
-      <form>
+      <form [formGroup]="model.createCourseForm">
 
         <div class="generic-form__header">
           <h3 class="generic-form__header-text">New course</h3>
         </div>
 
         <div class="generic-form__body">
-          <div class="generic-form__control">
-            <div class="generic-form__label">
-              <label
-                for="title"
-                class="generic-form__label-text">Title:</label>
-            </div>
-            <input
-              [(ngModel)]="courseData.name"
-              name="title"
-              id="title"
-              class="generic-form__input"
-              placeholder="Title"/>
-          </div>
 
-          <div class="generic-form__control">
-            <div class="generic-form__label">
-              <label
-                for="description"
-                class="generic-form__label-text">Description:</label>
-            </div>
-            <textarea
-              [(ngModel)]="courseData.description"
-              name="description"
-              id="description"
-              class="generic-form__text-area"
-              placeholder="Add description"></textarea>
-          </div>
+          <agmp-generic-input
+            [name]="'title'"
+            [placeholder]="'Title'"
+            [label]="'Title'"
+            [maxLength]="50"
+            [required]="true"
+            formControlName="name"
+          ></agmp-generic-input>
+
+          <agmp-generic-input
+            [name]="'description'"
+            [placeholder]="'Add description'"
+            [label]="'Description'"
+            formControlName="description"
+            [extended]="true"
+            [required]="true"
+            [maxLength]="500"
+          ></agmp-generic-input>
 
           <div class="generic-form__control">
             <agmp-date-picker
-              [(inputModel)]="courseData.date"
+              [id]="'date'"
+              [label]="'Date'"
+              [required]="true"
+              [pattern]="'[0-9]{2}/[0-9]{2}/[0-9]{4}'"
+              formControlName="date"
             ></agmp-date-picker>
           </div>
 
           <div class="generic-form__control">
             <agmp-time-picker
-              [(inputModel)]="courseData.length"
+              [label]="'Duration'"
+              [name]="'time'"
+              [placeholder]="'minutes'"
+              [required]="true"
+              formControlName="length"
             ></agmp-time-picker>
+            <div *ngIf="model.createCourseForm.get('length').errors && model.createCourseForm.get('length').touched" class="error-message">
+              <span *ngIf="model.createCourseForm.get('length').errors.required">{{model.createCourseForm.get('length').errors.required.message}}</span>
+            </div>
           </div>
 
           <div class="generic-form__control">
-            <agmp-tag-input></agmp-tag-input>
+            <agmp-tag-input
+              [required]="true"
+              [optionsList]="authors"
+              formControlName="authors"
+            ></agmp-tag-input>
+            <div *ngIf="model.createCourseForm.get('authors').errors && model.createCourseForm.get('authors').touched" class="error-message">
+              <span *ngIf="model.createCourseForm.get('authors').errors.required">{{model.createCourseForm.get('authors').errors.details.message}}</span>
+            </div>
           </div>
-
         </div>
 
 <!--        FOOTER -->
@@ -63,6 +72,7 @@
               type="submit"
             >Cancel</button>
             <button
+              [disabled]="model.createCourseForm.invalid"
               (click)="createCourse()"
               class="btn btn-primary create-course-form__btn"
               type="submit"

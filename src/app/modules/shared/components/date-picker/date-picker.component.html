@@ -1,18 +1,22 @@
 <div class="date-picker">
   <div class="generic-form__label">
     <label
-      for="date"
-      class="generic-form__label-text generic-form__input-label">Date:</label>
+      [for]="id"
+      class="generic-form__label-text generic-form__input-label">{{label}}:
+    </label>
+    <span class="required" *ngIf="required">*</span>
   </div>
   <div class="generic-form__input-label with-icon">
     <mat-icon class="generic-form__input-icon--static generic-form__input-icon--right">date_range</mat-icon>
   <input
-    name="date"
-    id="date"
-    [(ngModel)]="inputModel"
-    (ngModelChange)="inputModelChange.emit(inputModel)"
+    [id]="id"
+    (input)="onInputChange($event.target.value)"
+    (blur)="onTouched()"
     class="generic-input generic-form__input with-icon--right"
-    placeholder="MM/DD/YYYY"/>
+    placeholder="DD/MM/YYYY"/>
+  </div>
+  <div *ngIf="controlContainer.invalid && controlContainer.touched" class="error-message">
+    <span>{{errorMessage}}</span>
   </div>
 
 </div>

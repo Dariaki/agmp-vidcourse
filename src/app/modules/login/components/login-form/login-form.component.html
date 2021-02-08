@@ -1,51 +1,43 @@
 <div class="generic-container login-form">
-  <form>
+  <form [formGroup]="model.userDataForm">
 
     <div class="generic-form__header">
       <h3 class="generic-form__header-text">Login</h3>
     </div>
 
     <div class="generic-form__body">
-      <div class="generic-form__control">
-        <div class="generic-form__label">
-          <label for="name"
-            class="generic-form__label-text">Name:</label>
-        </div>
-        <input
-          [(ngModel)]="userData.login"
-          id="name"
-          name="name"
-          class="generic-input generic-form__input"
-          placeholder="Enter your name"/>
-      </div>
-      <div class="generic-form__control">
-        <div class="generic-form__label">
-          <label
-            for="password"
-            class="generic-form__label-text">Password:</label>
-        </div>
-        <input
-          [(ngModel)]="userData.password"
-          id="password"
-          name="password"
-          class="generic-input generic-form__input"
-          placeholder="Enter password"
-          type="password"/>
-      </div>
-    </div>
 
+      <agmp-generic-input
+        #userName
+        [name]="'name'"
+        [placeholder]="'Enter your name'"
+        [label]="'Name'"
+        [required]="true"
+        formControlName="login"
+      ></agmp-generic-input>
+
+      <agmp-generic-input
+        [name]="'password'"
+        [type]="'password'"
+        [placeholder]="'Enter your password'"
+        [label]="'Password'"
+        [required]="true"
+        formControlName="password"
+      ></agmp-generic-input>
+
+    </div>
     <div class="generic-form__footer">
       <div class="generic-form__forgot-password">
         <a class="generic-form__forgot-password-link mock-link">Forgot password?</a>
       </div>
       <div>
         <button
+          [disabled]="model.userDataForm.invalid"
           (click)="submitLoginInfo()"
           class="btn btn-primary"
           type="submit"
         >Submit</button>
       </div>
     </div>
-
   </form>
 </div>

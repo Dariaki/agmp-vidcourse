@@ -1,16 +1,17 @@
 <div class="time-picker">
   <div class="generic-form__label">
     <label
-      for="time"
-      class="generic-form__label-text">Duration:</label>
+      [for]="name"
+      class="generic-form__label-text">{{label}}:&nbsp;</label>
+     <span class="required" *ngIf="required">*</span>
   </div>
   <input
-    [(ngModel)]="inputModel"
-    (ngModelChange)="processTime()"
-    name="time"
-    id="time"
+    (input)="onInputChange($event.target.value)"
+    (blur)="onTouched()"
+    (keydown)="checkKeyInputValue($event.key)"
+    [id]="name"
     type="number"
     class="generic-form__input time-picker__input"
-    placeholder="minutes"/>
-    <span class="time-picker__time-output">{{inputModel | timeNormalizer}}</span>
+    [placeholder]="placeholder"/>
+    <span class="time-picker__time-output">{{outputValue | timeNormalizer}}</span>
 </div>

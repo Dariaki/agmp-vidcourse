@@ -19,7 +19,7 @@ export function courseReducer(state: ICourse[] = initialState, action: Actions) 
       return [...action.payload]; // state is ICourse, payload is ICourse[]
     }
     case CourseActionTypes.GET_COURSES: {
-      return state; // state is ICourse, payload is ICourse[]
+      return state;
     }
     default: {
       return state;

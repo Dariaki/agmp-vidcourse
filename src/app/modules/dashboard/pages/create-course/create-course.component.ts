@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
-import { ICourse } from '../../interfaces/course.interface';
+import { IAuthorsList, ICourse } from '../../interfaces/course.interface';
 import { CourseService } from '../../../../services/course.service';
 import { DataLoaderService } from '../../../../services/data-loader.service';
 import { CourseState } from '../../../shared/interfaces/states/course.state';
+import { CreateCourseModel } from './create-course.model';
 import * as CourseActions from '../../../../store/actions/courses.actions';
 
 @Component({
@@ -16,39 +17,39 @@ import * as CourseActions from '../../../../store/actions/courses.actions';
 export class CreateCourseComponent implements OnInit {
 
   public courseData: ICourse;
+  public model: CreateCourseModel;
+  public authors: IAuthorsList[];
 
   constructor(
-    private courseService: CourseService,
+    private _courseService: CourseService,
     private router: Router,
     private _dataLoaderService: DataLoaderService,
     private store: Store<CourseState>
-  ) { }
-
-  ngOnInit(): void {
-    this.clearData();
+  ) {
+    this.model = new CreateCourseModel();
   }
 
-  clearData() {
-    this.courseData = {
-      id: null,
-      name: '',
-      length: 0,
-      description: '',
-      date: '',
-      authors: [],
-      isTopRated: false
-    }
+  public ngOnInit(): void {
+    this.fetchAuthors();
   }
 
-  createCourse() {
-    // console.log('Course Data:', this.courseData);
-    this.courseData.id = Math.floor(Math.random() * 1001);
+  public fetchAuthors() {
     this._dataLoaderService.showDataLoader();
-    this.courseService.createCourse({...this.courseData})
-      .subscribe(() => {
+    this._courseService.getAuthors().subscribe(authorsList => {
+      this.authors = authorsList;
+      this._dataLoaderService.hideDataLoader();
+    })
+  }
+
+  public createCourse() {
+    this.model.setForm();
+    this._dataLoaderService.showDataLoader();
+    this._courseService.createCourse(this.model.createCourseForm.value).subscribe(() => {
         this.store.dispatch(new CourseActions.CreateCourse({...this.courseData}))
-        this.clearData();
+        this._dataLoaderService.hideDataLoader();
+        this.model.resetForm();
         this.router.navigate(['/courses'])
       })
   }
+
 }
