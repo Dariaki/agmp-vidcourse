@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { ICourse } from '../modules/dashboard/interfaces/course.interface';
@@ -43,12 +43,8 @@ export class CourseService {
   }
 
   public getCourseById(id: string): Observable<ICourse> {
-    return new Observable<ICourse>((subscriber) => {
-      setTimeout(() => {
-        let course = this.courses.find(course => course.id.toString() === id);
-        subscriber.next(course);
-      }, 500)
-    })
+      let course = this.courses.find(course => course.id.toString() === id);
+      return of(course);
   }
 
   public getCourseTitle(id: string): string {

@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard.component';
 import { CourseComponent } from './pages/course/course.component';
 import { ViewCoursesComponent } from './pages/view-courses/view-courses.component';
 import { AuthorizationGuard } from '../../services/guards/authorization.guard';
+import { CourseResolver } from '../../services/resolvers/course.resolver';
 
 
 const routes: Routes = [
@@ -32,6 +33,9 @@ const routes: Routes = [
         component: CourseComponent,
         data: {
           breadcrumbs: ':id'
+        },
+        resolve: {
+          courseData: CourseResolver
         }
       }
     ]
