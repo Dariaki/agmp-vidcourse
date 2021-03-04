@@ -26,6 +26,13 @@ export class CourseComponent implements OnInit {
     this._dataLoaderService.showDataLoader();
     this.route.params.subscribe(path =>
       this.courseService.getCourseById(path.id).subscribe(course => {
+
+        console.log('courses before', course)
+        if (!course.wow) {
+          course = { ...course, wow: 'Poop'}
+        }
+        console.log('courses after', course)
+
         this.course = course;
         this._dataLoaderService.hideDataLoader();
       })

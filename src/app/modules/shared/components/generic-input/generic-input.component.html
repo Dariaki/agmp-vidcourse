@@ -1,1 +1,32 @@
-<p>generic-input works!</p>
+<div class="generic-form__control">
+  <div class="generic-form__label">
+    <label
+      [for]="name"
+      class="generic-form__label-text">{{label}}:
+      <span class="required" *ngIf="required">*</span>
+    </label>
+  </div>
+  <div *ngIf="!extended; else extendedInput">
+    <input
+      [id]="name"
+      (input)="onInputReceived($event.target.value)"
+      (blur)="onTouched()"
+      class="generic-input generic-form__input"
+      [placeholder]="placeholder"
+      [type]="type"/>
+      <div *ngIf="controlContainer.invalid && controlContainer.touched" class="error-message">
+        <span>{{errorMessage}}</span>
+      </div>
+  </div>
+  <ng-template #extendedInput>
+      <textarea
+        (input)="onInputReceived($event.target.value)"
+        (blur)="onTouched()"
+        [id]="name"
+        class="generic-form__text-area"
+        [placeholder]="placeholder"></textarea>
+        <div *ngIf="controlContainer.invalid && controlContainer.touched" class="error-message">
+          <span>{{errorMessage}}</span>
+        </div>
+  </ng-template>
+</div>

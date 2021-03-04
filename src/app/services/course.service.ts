@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { ICourse } from '../modules/dashboard/interfaces/course.interface';
+import {IAuthor, IAuthorsList, ICourse} from '../modules/dashboard/interfaces/course.interface';
 
 
 @Injectable({
@@ -62,7 +62,11 @@ export class CourseService {
   }
 
   public removeCourse(id: string): Observable<void> {
-    return this.httpClient.delete<void>(`http://localhost:3004/courses/${id}`)
+    return this.httpClient.delete<void>(`http://localhost:3004/courses/${id}`);
+  }
+
+  public getAuthors() {
+    return this.httpClient.get<IAuthorsList[]>('http://localhost:3004/authors');
   }
 
 }

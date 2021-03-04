@@ -2,4 +2,9 @@
   <h1>Course Details</h1>
   <h3>Title: {{course.name}}</h3>
   <p>Description: {{course.description}}</p>
+  <ul>
+    <li *ngFor="let author of course.authors">
+      {{author.name + ' ' + author.lastName}}
+    </li>
+  </ul>
 </div>

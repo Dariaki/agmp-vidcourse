@@ -1,12 +1,43 @@
 <div class="tag-input">
   <div class="generic-form__label">
-    <label
-      for="date"
-      class="generic-form__label-text">Authors:</label>
+  <label
+      for="authors"
+      class="generic-form__label-text">Authors:&nbsp;</label>
+  <span class="required" *ngIf="true">*</span>
   </div>
-  <input
-    name="date"
-    id="date"
-    class="generic-input generic-form__input"
-    placeholder="Start typing"/>
+  <div class="input-wrapper generic-form__input">
+    <ul class="chip-list">
+      <li
+        class="chip"
+        *ngFor="let chip of chips; let id = index;">
+        <span class="chip-text">{{chip.name}}</span>
+        <mat-icon [inline]="true" class="chip-remove-icon"
+              (click)="removeChip(id)">close</mat-icon>
+      </li>
+      <li
+        class="chip input-chip"
+      >
+        <input
+          autocomplete="off"
+          [value]="inputValue"
+          (keydown)="checkKey($event)"
+          (input)="onInputChange($event.target.value)"
+          (focus)="openOptionsDropdown()"
+          (blur)="onSelectorCompletion()"
+          (focusout)="onFocusOut($event)"
+          tabindex="1"
+          id="authors"
+          #inputElement
+          class="generic-input"
+          placeholder="Start typing"/>
+      </li>
+    </ul>
+  </div>
+  <div class="options-dropdown" *ngIf="showDropdown">
+    <ul class="option-list" tabindex="2" #optionsListElement>
+      <li
+        class="option"
+        (click)="onOptionSelect($event)"
+        *ngFor="let option of optionsList | filter: this.inputValue: false; let i = index;">{{option.name}}</li>
+    </ul>
 </div>

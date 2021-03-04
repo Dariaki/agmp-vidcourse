@@ -6,10 +6,16 @@ export interface ICourse {
   date: string;
   authors: Array<IAuthor>;
   isTopRated: boolean;
+  wow?: string;
 }
 
 export interface IAuthor {
-  id: number;
+  id: string;
   name: string;
+  lastName: string;
 }
 
+export interface IAuthorsList {
+  id: string;
+  name: string;
+}

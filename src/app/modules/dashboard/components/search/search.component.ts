@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Subject} from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'agmp-search',
@@ -9,15 +10,22 @@ import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
 })
 export class SearchComponent implements OnInit {
 
-  $search = new Subject<string>();
-  searchValue: string;
+  public searchValue: string;
+  public searchForm: FormGroup;
+
+  private $search = new Subject<string>();
+
+
   @Output() onSearch: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() {
   }
 
   ngOnInit(): void {
-    this.searchValue = ""
+
+    this.searchForm = new FormGroup({
+      searchValue: new FormControl('')
+    })
 
     this.$search
       .pipe(
@@ -32,7 +40,8 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
-    this.$search.next(this.searchValue);
+    let searchValue = this.searchForm.get('searchValue').value
+    this.$search.next(searchValue);
     // console.log('Search Value: ', this.searchValue);
   }
 }

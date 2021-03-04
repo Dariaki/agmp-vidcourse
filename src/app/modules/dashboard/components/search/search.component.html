@@ -1,12 +1,11 @@
 <div class="search">
-  <form class="search__wrapper">
+  <form class="search__wrapper" [formGroup]="searchForm">
     <div class="search__input-wrapper">
       <label class="search__icon generic-form__input-label with-icon">
         <mat-icon class="generic-form__input-icon generic-form__input-icon--left">search</mat-icon>
         <input
-          [(ngModel)]="searchValue"
           (keyup)="search()"
-          name="searchValue"
+          formControlName="searchValue"
           class="search__input generic-form__input with-icon--left"
           placeholder="Type to search"/>
       </label>

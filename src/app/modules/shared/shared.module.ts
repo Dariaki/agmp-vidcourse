@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './modules/material/material.module';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { FilterPipe } from './pipes/filter.pipe';
@@ -19,6 +19,7 @@ import { TimePickerComponent } from './components/time-picker/time-picker.compon
 import { TagInputComponent } from './components/tag-input/tag-input.component';
 import { DataLoaderComponent } from './components/data-loader/data-loader.component';
 
+
 @NgModule({
   declarations: [
     ModalComponent,
@@ -34,14 +35,15 @@ import { DataLoaderComponent } from './components/data-loader/data-loader.compon
     DatePickerComponent,
     TimePickerComponent,
     TagInputComponent,
-    DataLoaderComponent
+    DataLoaderComponent,
   ],
-    imports: [
-        CommonModule,
-        MaterialModule,
-        FormsModule,
-        RouterModule
-    ],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+  ],
   providers: [
     FilterPipe
   ],
@@ -49,6 +51,7 @@ import { DataLoaderComponent } from './components/data-loader/data-loader.compon
     CommonModule,
     MaterialModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule,
     FilterPipe,
     OrderByPipe,
@@ -62,7 +65,7 @@ import { DataLoaderComponent } from './components/data-loader/data-loader.compon
     TagInputComponent,
     TimePickerComponent,
     DatePickerComponent,
-    DataLoaderComponent
+    DataLoaderComponent,
   ],
 })
 export class SharedModule { }
