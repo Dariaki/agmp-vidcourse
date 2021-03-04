@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+
 import { ICourse } from '../../interfaces/course.interface';
 import { CourseService } from '../../../../services/course.service';
 import { DataLoaderService } from '../../../../services/data-loader.service';
+import { CourseState } from '../../../shared/interfaces/states/course.state';
+import * as CourseActions from '../../../../store/actions/courses.actions';
 
 @Component({
   selector: 'agmp-create-course',
@@ -16,7 +20,8 @@ export class CreateCourseComponent implements OnInit {
   constructor(
     private courseService: CourseService,
     private router: Router,
-    private _dataLoaderService: DataLoaderService
+    private _dataLoaderService: DataLoaderService,
+    private store: Store<CourseState>
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +46,7 @@ export class CreateCourseComponent implements OnInit {
     this._dataLoaderService.showDataLoader();
     this.courseService.createCourse({...this.courseData})
       .subscribe(() => {
+        this.store.dispatch(new CourseActions.CreateCourse({...this.courseData}))
         this.clearData();
         this.router.navigate(['/courses'])
       })
